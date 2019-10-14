@@ -1,0 +1,58 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    var user = ViewContext.HttpContext.User.Identity.Name;
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "CreateEvent");
+</p>
+<table class="table">
+    <tr>
+        <th>
+            "Id"
+        </th>
+        <th>
+            "EventName"
+        </th>
+        <th>
+            "OwnerId"
+        </th>
+        <th>"Price"</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @item.Id;
+    </td>
+    <td>
+        @item.EventName
+    </td>
+    <td>
+        @item.OwnerId
+    </td>
+    <td>
+        @item.Price
+    </td>
+    @if (user == item.OwnerId)
+    {
+        <td>
+            @Html.ActionLink("Edit", "EditEvent", new { id = item.Id }) |
+            @Html.ActionLink("Details", "DetailView", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.ActionLink("Details", "DetailView", new { id = item.Id })
+        </td>
+    }
+
+</tr>
+    }
+
+</table>

@@ -14,7 +14,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 //using System;
 using System.Threading.Tasks;
-
+using System.IO;
 
 namespace Assignment_1.Models
 {
@@ -58,7 +58,8 @@ namespace SendGrid
         {
             public  async Task<int> Execute()
             {
-                var apiKey = "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";
+                //var apiKey = "SG.Pp-Le_UhRH2lWPv9wiZpXQ.XAmFCOpsKbPIIxnSY_fAVONnZJTvJkAterIH7NLCuQE_old";
+                var apiKey = "SG.i8-HjOgQSRS5T1RT5RHD2Q.9FnY6CvXO0oWiCL2mkXY1IT2wxogUB9MUOFB_VHpORU_changed";
                 //var apiKey = Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("test@example.com", "Example User");
@@ -67,7 +68,13 @@ namespace SendGrid
                 var plainTextContent = "and easy to do anywhere, even with C#";
                 var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-                var response = await client.SendEmailAsync(msg);
+                //var bytes = File.ReadAllBytes("A.pdf");
+                // var file = Convert.ToBase64String(bytes);
+                var fileStream = File.OpenRead("D:\\Course\\FIT5032-C#\\Assignment\\Code\\Assignment_1\\Assignment_1\\App_Data\\A.pdf") ;
+               
+                 msg.AddAttachmentAsync("A.pdf", fileStream);
+                
+                    var response = await client.SendEmailAsync(msg);
 
                 return 1;
             }
