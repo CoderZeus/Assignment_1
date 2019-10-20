@@ -58,8 +58,8 @@ namespace SendGrid
         {
             public  async Task<int> Execute()
             {
-                //var apiKey = "SG.Pp-Le_UhRH2lWPv9wiZpXQ.XAmFCOpsKbPIIxnSY_fAVONnZJTvJkAterIH7NLCuQE_old";
-                var apiKey = "SG.i8-HjOgQSRS5T1RT5RHD2Q.9FnY6CvXO0oWiCL2mkXY1IT2wxogUB9MUOFB_VHpORU_changed";
+                //var apiKey = "old";
+                var apiKey = "changed";
                 //var apiKey = Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("test@example.com", "Example User");
